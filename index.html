@@ -1,606 +1,495 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>CDPIDS-2026 | Cybersecurity and Data Protection in Intelligent Digital Systems</title>
-  <meta name="description" content="International Workshop on Cybersecurity and Data Protection in Intelligent Digital Systems (CDPIDS-2026), October 28-30, 2026, Almaty, Kazakhstan, held within EUSPN-2026.">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="fa/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: #f5f9ff;
-      color: #0a1e2c;
-      line-height: 1.5;
-      scroll-behavior: smooth;
-    }
-    :root {
-      --deep-space: #0B1A2F;
-      --cosmic-teal: #1C6E8F;
-      --cyber-blue: #2BB3E0;
-      --signal-amber: #F39C12;
-      --burnt-orange: #E67E22;
-      --glow: #f5e7d9;
-      --light-bg: #f0f4f9;
-      --white: #ffffff;
-      --shadow-md: 0 20px 30px -12px rgba(0, 0, 0, 0.08), 0 6px 12px -6px rgba(0, 0, 0, 0.02);
-      --border-light: 1px solid rgba(28, 110, 143, 0.2);
-    }
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 28px;
-    }
-    /* top bar */
-    .top-bar {
-      background: var(--deep-space);
-      color: #cbd5e1;
-      font-size: 0.85rem;
-      padding: 10px 0;
-      border-bottom: 2px solid var(--signal-amber);
-    }
-    .top-bar .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .top-links a {
-      color: #e2e8f0;
-      text-decoration: none;
-      margin-left: 24px;
-      font-weight: 500;
-      transition: 0.2s;
-    }
-    .top-links a:hover { color: var(--cyber-blue); }
-    /* header with real logos */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
-      border-bottom: 1px solid rgba(28, 110, 143, 0.2);
-    }
-    .header-flex {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      padding: 14px 0;
-      gap: 20px;
-    }
-    .logos-group {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-    .logo-univ-img, .logo-institute-img {
-      height: 55px;
-      width: auto;
-      object-fit: contain;
-    }
-    .logo-univ-img { max-width: 150px; }
-    .logo-institute-img { max-width: 200px; }
-    .vertical-divider {
-      width: 1px;
-      height: 40px;
-      background: #cbd5e1;
-    }
-    .nav-links {
-      display: flex;
-      gap: 26px;
-      flex-wrap: wrap;
-    }
-    .nav-links a {
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.85rem;
-      color: #1e2f3f;
-      transition: 0.2s;
-      border-bottom: 2px solid transparent;
-      padding-bottom: 4px;
-    }
-    .nav-links a:hover { border-bottom-color: var(--signal-amber); color: var(--cosmic-teal); }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CDPIDS-2026 · Cybersecurity and Data Protection in Intelligent Digital Systems</title>
+<meta name="description" content="International Workshop on Cybersecurity and Data Protection in Intelligent Digital Systems (CDPIDS-2026), October 28–30, 2026, Almaty, Kazakhstan, within EUSPN-2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fa/css/all.min.css">
+<style>
+:root{
+  --ink:#0a1424;          /* near-black navy text */
+  --navy:#0b3c8c;         /* Satbayev blue */
+  --navy-deep:#072a64;
+  --teal:#0f9bb3;         /* cyber teal accent */
+  --amber:#e98a15;        /* warning/deadline accent */
+  --line:#e4e9f1;         /* hairline */
+  --line-strong:#cdd6e4;
+  --mut:#5b6b82;          /* muted text */
+  --paper:#ffffff;
+  --paper-2:#f7f9fc;      /* faint panel */
+  --paper-3:#eef3f9;
+  --radius:14px;
+  --maxw:1180px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+a{color:inherit;text-decoration:none}
+.mono{font-family:'JetBrains Mono',monospace}
 
-    /* HERO with background image and overlay for readability */
-    .hero {
-      position: relative;
-      background: url('cdpids-hero.png') no-repeat center center;
-      background-size: cover;
-      color: white;
-      isolation: isolate;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(105deg, rgba(7, 26, 43, 0.92) 0%, rgba(11,26,59,0.80) 38%, rgba(11,26,59,0.30) 64%, rgba(11,26,59,0.05) 100%);
-      z-index: 1;
-    }
-    .hero .container {
-      position: relative;
-      z-index: 2;
-    }
-    .hero-grid {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 90px 0 100px;
-      max-width: 700px;
-    }
-    .hero-sub {
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      background: rgba(243, 156, 18, 0.2);
-      backdrop-filter: blur(4px);
-      display: inline-block;
-      padding: 6px 14px;
-      border-radius: 30px;
-      margin-bottom: 16px;
-      color: #ffde9e;
-      border-left: 3px solid var(--signal-amber);
-    }
-    .hero-left .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(255,255,255,0.12);
-      backdrop-filter: blur(4px);
-      padding: 6px 18px;
-      border-radius: 40px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      margin-bottom: 24px;
-      border-left: 4px solid var(--signal-amber);
-    }
-    .hero-left h1 {
-      font-size: 2.8rem;
-      font-weight: 800;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-      margin-bottom: 20px;
-    }
-    .hero-left .hero-lead {
-      font-size: 1.1rem;
-      opacity: 0.95;
-      margin-bottom: 32px;
-      max-width: 85%;
-    }
-    .btn-group {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 28px;
-      font-weight: 700;
-      border-radius: 40px;
-      text-decoration: none;
-      transition: 0.2s;
-      font-size: 0.85rem;
-    }
-    .btn-primary {
-      background: var(--signal-amber);
-      color: #0a1c2f;
-      box-shadow: 0 6px 14px rgba(243,156,18,0.3);
-    }
-    .btn-primary:hover { background: var(--burnt-orange); transform: translateY(-2px);}
-    .btn-outline {
-      border: 2px solid rgba(255,255,255,0.5);
-      color: white;
-      background: transparent;
-    }
-    .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: var(--cyber-blue);}
+/* ---------- eyebrow / labels ---------- */
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--teal);display:inline-flex;align-items:center;gap:10px;
+}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--teal)}
 
-    /* quick info cards */
-    .stats-row {
-      margin-top: -40px;
-      position: relative;
-      z-index: 10;
-    }
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      background: white;
-      border-radius: 48px;
-      box-shadow: var(--shadow-md);
-      overflow: hidden;
-    }
-    .stat-item {
-      padding: 24px 20px;
-      text-align: center;
-      border-right: 1px solid #eef2f8;
-    }
-    .stat-item:last-child { border-right: none; }
-    .stat-icon { font-size: 32px; color: var(--cosmic-teal); margin-bottom: 8px;}
-    /* sections */
-    section { padding: 80px 0; }
-    .section-alt { background: var(--light-bg); }
-    .section-title {
-      font-size: 2rem;
-      font-weight: 800;
-      margin-bottom: 16px;
-      color: var(--deep-space);
-    }
-    .section-sub {
-      font-size: 1rem;
-      color: #2c4b66;
-      max-width: 720px;
-      margin-bottom: 48px;
-    }
-    .grid-3, .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 28px;
-    }
-    .card {
-      background: white;
-      border-radius: 28px;
-      padding: 28px;
-      box-shadow: var(--shadow-md);
-      border: var(--border-light);
-      transition: 0.2s;
-    }
-    .card:hover { transform: translateY(-5px);}
-    .card-icon { font-size: 2.2rem; color: var(--cosmic-teal); margin-bottom: 18px;}
-    .topics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 24px;
-    }
-    .topic-item {
-      background: white;
-      border-radius: 24px;
-      padding: 24px;
-      border-left: 6px solid var(--signal-amber);
-      box-shadow: var(--shadow-md);
-    }
-    .dates-wrap {
-      display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 40px;
-      align-items: start;
-    }
-    .dates-table {
-      width: 100%;
-      border-collapse: collapse;
-      background: white;
-      border-radius: 28px;
-      overflow: hidden;
-      box-shadow: var(--shadow-md);
-    }
-    .dates-table th, .dates-table td {
-      padding: 18px 24px;
-      border-bottom: 1px solid #eef2f8;
-      text-align: left;
-    }
-    .dates-table th { background: var(--deep-space); color: white; font-weight: 600;}
-    .info-card {
-      background: var(--cosmic-teal);
-      color: white;
-      border-radius: 28px;
-      padding: 32px;
-      border-top: 6px solid var(--signal-amber);
-    }
-    /* Committee list */
-    .committee-list {
-      background: var(--deep-space);
-      padding: 36px;
-      border-radius: 48px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 16px;
-      margin-top: 28px;
-    }
-    .member-badge {
-      background: rgba(255, 255, 255, 0.08);
-      padding: 16px 20px;
-      border-radius: 28px;
-      transition: all 0.2s ease;
-      border-left: 4px solid var(--signal-amber);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .member-badge:hover {
-      background: rgba(255, 255, 255, 0.15);
-      transform: translateX(5px);
-    }
-    .member-name {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: #ffffff;
-      letter-spacing: -0.2px;
-    }
-    .member-affiliation {
-      font-size: 0.8rem;
-      font-weight: 400;
-      color: #cbd5e6;
-      line-height: 1.4;
-    }
-    .committee-description {
-      background: rgba(0, 0, 0, 0.55);
-      backdrop-filter: blur(6px);
-      border-radius: 36px;
-      padding: 22px 32px;
-      margin-bottom: 24px;
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: #ffffff;
-      border-left: 5px solid var(--signal-amber);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
-    }
-    .committee-description i {
-      color: var(--signal-amber);
-      margin-right: 12px;
-      font-size: 1.3rem;
-    }
-    .contact-flex {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 32px;
-    }
-    .contact-card i { margin-bottom: 14px; display:inline-block; }
-    .contact-card {
-      background: white;
-      border-radius: 28px;
-      padding: 28px;
-      flex: 1;
-      box-shadow: var(--shadow-md);
-    }
-    .invitation-card {
-      background: linear-gradient(145deg, #fff6ea, #ffffff);
-      border-radius: 32px;
-      padding: 36px;
-      border: 1px solid #ffdfb0;
-    }
-    footer {
-      background: var(--deep-space);
-      color: #b9d0e4;
-      padding: 40px 0;
-      text-align: center;
-    }
-    .btn-download {
-      background: #1C6E8F;
-      color: white;
-      border: none;
-    }
-    .btn-download:hover { background: #0e4b64; transform: translateY(-2px);}
-    @media (max-width: 980px) {
-      .hero-grid { align-items: center; text-align: center; max-width: 100%;}
-      .hero-left .hero-lead { max-width: 100%; margin-left: auto; margin-right: auto; }
-      .btn-group { justify-content: center; }
-      .dates-wrap { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 680px) {
-      .logos-group .vertical-divider { display: none; }
-      .header-flex { justify-content: center; flex-direction: column; text-align: center; }
-      .nav-links { justify-content: center; }
-      .section-title { font-size: 1.8rem; }
-      .hero-left h1 { font-size: 2rem; }
-      .committee-list { grid-template-columns: 1fr; }
-    }
-    .text-highlight { color: var(--signal-amber); font-weight: 700; }
-  </style>
+/* ---------- top utility bar ---------- */
+.util{border-bottom:1px solid var(--line);background:var(--paper)}
+.util .wrap{display:flex;justify-content:space-between;align-items:center;height:42px;
+  font-family:'JetBrains Mono',monospace;font-size:.74rem;color:var(--mut);letter-spacing:.04em}
+.util a{color:var(--mut);margin-left:22px;transition:color .15s}
+.util a:hover{color:var(--navy)}
+.util .dot{color:var(--teal)}
+
+/* ---------- header ---------- */
+.head{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.86);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.head .wrap{display:flex;align-items:center;justify-content:space-between;height:78px;gap:24px}
+.brand{display:flex;align-items:center;gap:18px;min-width:0}
+.brand img.u{height:42px;width:auto}
+.brand .sep{width:1px;height:34px;background:var(--line-strong)}
+.brand img.i{height:46px;width:auto}
+nav.main{display:flex;gap:30px}
+nav.main a{font-size:.86rem;font-weight:500;color:var(--ink);position:relative;padding:6px 0;letter-spacing:.01em}
+nav.main a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--teal);transition:width .2s}
+nav.main a:hover{color:var(--navy)}
+nav.main a:hover::after{width:100%}
+.head .cta{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;
+  font-size:.82rem;font-weight:600;padding:10px 18px;border-radius:9px;transition:background .15s}
+.head .cta:hover{background:var(--navy-deep)}
+.burger{display:none;background:none;border:1px solid var(--line-strong);border-radius:8px;width:42px;height:38px;color:var(--ink);font-size:1.1rem}
+
+/* ---------- hero ---------- */
+.hero{position:relative;border-bottom:1px solid var(--line);overflow:hidden;background:var(--paper)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;
+  padding:78px 0 84px}
+.hero h1{font-family:'Sora',sans-serif;font-weight:800;font-size:3.15rem;line-height:1.08;
+  letter-spacing:-.02em;margin:20px 0 22px}
+.hero h1 .hl{color:var(--navy)}
+.hero p.lead{font-size:1.08rem;color:var(--mut);max-width:36em;margin-bottom:30px}
+.hero .actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:.9rem;
+  padding:13px 24px;border-radius:10px;transition:transform .12s,background .15s,border-color .15s}
+.btn-primary{background:var(--navy);color:#fff}
+.btn-primary:hover{background:var(--navy-deep);transform:translateY(-1px)}
+.btn-ghost{border:1px solid var(--line-strong);color:var(--ink);background:#fff}
+.btn-ghost:hover{border-color:var(--navy);color:var(--navy)}
+.hero .meta-row{display:flex;gap:26px;flex-wrap:wrap;margin-top:34px;
+  font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--mut)}
+.hero .meta-row b{color:var(--ink);font-weight:600}
+.hero .meta-row i{color:var(--teal);margin-right:7px}
+
+/* hero visual card */
+.hero-card{position:relative;border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;background:#0a1730;box-shadow:0 24px 60px -28px rgba(10,40,90,.45)}
+.hero-card img{display:block;width:100%;height:100%;object-fit:cover;min-height:360px;opacity:.96}
+.hero-card .tag{position:absolute;left:14px;bottom:14px;background:rgba(7,23,48,.82);
+  border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(6px);color:#dbe7ff;
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.05em;
+  padding:7px 12px;border-radius:8px}
+.hero-card .tag b{color:var(--teal)}
+
+/* corner ticks signature */
+.ticks{position:absolute;inset:0;pointer-events:none}
+.ticks span{position:absolute;width:14px;height:14px;border:2px solid var(--teal);opacity:.5}
+.ticks .tl{top:10px;left:10px;border-right:0;border-bottom:0}
+.ticks .tr{top:10px;right:10px;border-left:0;border-bottom:0}
+.ticks .bl{bottom:10px;left:10px;border-right:0;border-top:0}
+.ticks .br{bottom:10px;right:10px;border-left:0;border-top:0}
+
+/* ---------- strip stats ---------- */
+.strip{border-bottom:1px solid var(--line);background:var(--paper-2)}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.strip .cell{padding:24px 26px;border-right:1px solid var(--line)}
+.strip .cell:last-child{border-right:0}
+.strip .k{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+.strip .v{font-family:'Sora',sans-serif;font-weight:700;font-size:1.05rem;color:var(--ink)}
+.strip .s{font-size:.8rem;color:var(--mut)}
+
+/* ---------- section scaffolding ---------- */
+section.block{padding:84px 0;border-bottom:1px solid var(--line)}
+.block.alt{background:var(--paper-2)}
+.sec-head{margin-bottom:46px;max-width:62ch}
+.sec-head h2{font-family:'Sora',sans-serif;font-weight:700;font-size:2.1rem;letter-spacing:-.015em;
+  margin:14px 0 12px;line-height:1.15}
+.sec-head p{color:var(--mut);font-size:1.02rem}
+
+/* feature cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{border:1px solid var(--line);border-radius:var(--radius);background:#fff;padding:28px;
+  transition:border-color .18s,transform .18s,box-shadow .18s}
+.card:hover{border-color:var(--line-strong);transform:translateY(-3px);
+  box-shadow:0 20px 44px -30px rgba(11,60,140,.45)}
+.card .ic{width:46px;height:46px;border-radius:11px;background:var(--paper-3);color:var(--navy);
+  display:flex;align-items:center;justify-content:center;font-size:1.15rem;margin-bottom:18px}
+.card h3{font-family:'Sora',sans-serif;font-size:1.12rem;font-weight:600;margin-bottom:9px}
+.card p{color:var(--mut);font-size:.94rem}
+
+/* objectives - 2 col list with index */
+.obj{display:grid;grid-template-columns:repeat(2,1fr);gap:0 48px}
+.obj .row{display:flex;gap:18px;padding:22px 0;border-bottom:1px solid var(--line)}
+.obj .row .n{font-family:'JetBrains Mono',monospace;font-size:.82rem;font-weight:600;color:var(--teal);
+  padding-top:2px;min-width:30px}
+.obj .row h4{font-family:'Sora',sans-serif;font-size:1.02rem;font-weight:600;margin-bottom:4px}
+.obj .row p{color:var(--mut);font-size:.92rem}
+
+/* topics grid */
+.topics{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.topic{display:flex;gap:16px;border:1px solid var(--line);border-left:3px solid var(--teal);
+  border-radius:12px;padding:20px 22px;background:#fff;transition:background .15s,border-color .15s}
+.topic:hover{background:var(--paper-2)}
+.topic .ic{color:var(--navy);font-size:1.15rem;padding-top:3px;min-width:24px}
+.topic h4{font-size:1rem;font-weight:600;margin-bottom:3px;font-family:'Sora',sans-serif}
+.topic p{color:var(--mut);font-size:.88rem}
+
+/* audience chips */
+.aud{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.aud .a{border:1px solid var(--line);border-radius:12px;padding:22px;background:#fff;text-align:left}
+.aud .a i{color:var(--teal);font-size:1.3rem}
+.aud .a h4{font-family:'Sora',sans-serif;font-size:.98rem;font-weight:600;margin:12px 0 5px}
+.aud .a p{color:var(--mut);font-size:.85rem}
+
+/* dates */
+.dates-wrap{display:grid;grid-template-columns:1.4fr .9fr;gap:32px;align-items:start}
+table.dt{width:100%;border-collapse:collapse;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+table.dt th{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  text-align:left;background:var(--ink);color:#cdd9ee;padding:14px 20px;font-weight:600}
+table.dt td{padding:16px 20px;border-top:1px solid var(--line);font-size:.95rem}
+table.dt tr:nth-child(even) td{background:var(--paper-2)}
+table.dt .ev{font-weight:500}
+table.dt .da{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--navy)}
+table.dt .da.amber{color:var(--amber)}
+.eu-card{border:1px solid var(--line);border-radius:var(--radius);background:var(--navy);color:#eaf1ff;padding:28px;
+  position:relative;overflow:hidden}
+.eu-card::after{content:"";position:absolute;right:-40px;top:-40px;width:160px;height:160px;
+  border:1px solid rgba(255,255,255,.14);border-radius:50%}
+.eu-card .ic{font-size:1.6rem;color:#8fc4ff;margin-bottom:12px}
+.eu-card h3{font-family:'Sora',sans-serif;font-size:1.15rem;margin-bottom:8px}
+.eu-card p{font-size:.9rem;color:#c5d6f5;margin-bottom:10px}
+.eu-card a{color:#8fc4ff;font-family:'JetBrains Mono',monospace;font-size:.78rem;word-break:break-all}
+
+/* submission */
+.sub-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.panel{border:1px solid var(--line);border-radius:var(--radius);background:#fff;padding:30px}
+.panel.invite{background:var(--paper-2);border-color:var(--line-strong)}
+.panel h3{font-family:'Sora',sans-serif;font-size:1.2rem;margin-bottom:12px}
+.panel p{color:var(--mut);font-size:.94rem;margin-bottom:14px}
+.dl-box{border:1px dashed var(--line-strong);border-radius:12px;padding:20px;margin-top:18px;background:var(--paper-2)}
+.dl-box .label{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.dl-btn{display:inline-flex;align-items:center;gap:10px;background:var(--teal);color:#fff;font-weight:600;font-size:.86rem;
+  padding:11px 18px;border-radius:9px;margin-top:6px;transition:background .15s}
+.dl-btn:hover{background:#0c869b}
+.invite .quote{border-left:3px solid var(--amber);padding-left:16px;font-size:.95rem;color:var(--ink)}
+.invite .ddl{margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--amber);font-weight:600}
+
+/* committee */
+.tpc{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tpc .m{border:1px solid var(--line);border-radius:12px;padding:18px 20px;background:#fff;
+  border-left:3px solid var(--navy)}
+.tpc .m .nm{font-family:'Sora',sans-serif;font-weight:600;font-size:1rem}
+.tpc .m .af{font-size:.82rem;color:var(--mut);margin-top:3px}
+
+/* organizers */
+.org{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.org .o{border:1px solid var(--line);border-radius:var(--radius);background:#fff;padding:26px}
+.org .o .ic{width:44px;height:44px;border-radius:11px;background:var(--paper-3);color:var(--navy);
+  display:flex;align-items:center;justify-content:center;font-size:1.15rem;margin-bottom:14px}
+.org .o h4{font-family:'Sora',sans-serif;font-size:1.05rem;margin-bottom:4px}
+.org .o p{color:var(--mut);font-size:.88rem;margin-bottom:8px}
+.org .o a{color:var(--navy);font-family:'JetBrains Mono',monospace;font-size:.8rem;word-break:break-all}
+
+/* footer */
+footer{background:var(--ink);color:#aebfd6;padding:54px 0 40px}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:start}
+footer .ft-brand{font-family:'Sora',sans-serif;font-weight:700;color:#fff;font-size:1.2rem;margin-bottom:8px}
+footer .ft-brand span{color:var(--teal)}
+footer p{font-size:.88rem;line-height:1.7}
+footer .ft-links{display:flex;flex-direction:column;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.8rem}
+footer .ft-links a:hover{color:#fff}
+footer .rule{grid-column:1/-1;height:1px;background:rgba(255,255,255,.12);margin:14px 0}
+footer .copy{grid-column:1/-1;font-family:'JetBrains Mono',monospace;font-size:.74rem;color:#7e90ab;letter-spacing:.04em}
+
+/* responsive */
+@media(max-width:960px){
+  .hero-grid{grid-template-columns:1fr;gap:34px}
+  .hero h1{font-size:2.5rem}
+  .strip .wrap{grid-template-columns:repeat(2,1fr)}
+  .strip .cell:nth-child(2){border-right:0}
+  .cards,.obj,.topics,.aud,.sub-grid,.tpc,.org,.dates-wrap,footer .wrap{grid-template-columns:1fr}
+  nav.main,.head .cta{display:none}
+  .burger{display:inline-flex;align-items:center;justify-content:center}
+}
+@media(max-width:560px){
+  .wrap{padding:0 20px}
+  .hero h1{font-size:2.05rem}
+  .strip .wrap{grid-template-columns:1fr}
+  .strip .cell{border-right:0}
+  .aud{grid-template-columns:1fr 1fr}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+</style>
 </head>
 <body>
 
-<div class="top-bar">
-  <div class="container">
-    <span><i class="fas fa-map-marker-alt"></i> October 28–30, 2026 · Almaty, Kazakhstan</span>
-    <div class="top-links">
-      <a href="#dates"><i class="far fa-calendar-alt"></i> Deadlines</a>
-      <a href="#contact"><i class="far fa-envelope"></i> Contact</a>
-      <a href="#submission"><i class="fas fa-upload"></i> Submit</a>
-    </div>
+<!-- utility bar -->
+<div class="util">
+  <div class="wrap">
+    <span><span class="dot">●</span> Oct 28–30, 2026 · Almaty, Kazakhstan · within EUSPN-2026</span>
+    <span class="links">
+      <a href="#dates">Deadlines</a>
+      <a href="#submission">Submission</a>
+      <a href="#contact">Contact</a>
+    </span>
   </div>
 </div>
 
-<header class="site-header">
-  <div class="container header-flex">
-    <div class="logos-group">
-      <img class="logo-univ-img" src="satbayev-logo.png" alt="Satbayev University" onerror="this.src='https://placehold.co/140x55?text=Satbayev+Univ'">
-      <span class="vertical-divider"></span>
-      <img class="logo-institute-img" src="logo.png" alt="Institute of Automation and Information Technology" onerror="this.src='https://placehold.co/130x55?text=IAIT'">
+<!-- header -->
+<header class="head">
+  <div class="wrap">
+    <div class="brand">
+      <img class="u" src="satbayev-logo.png" alt="Satbayev University">
+      <span class="sep"></span>
+      <img class="i" src="logo.png" alt="Institute of Automation and Information Technology">
     </div>
-    <nav class="nav-links">
+    <nav class="main">
       <a href="#overview">Overview</a>
-      <a href="#topics">Topics</a>
       <a href="#objectives">Objectives</a>
+      <a href="#topics">Topics</a>
       <a href="#dates">Dates</a>
       <a href="#submission">Submission</a>
-      <a href="#committee">TPC</a>
-      <a href="#contact">Contact</a>
+      <a href="#committee">Committee</a>
     </nav>
+    <a class="cta" href="#submission"><i class="fas fa-arrow-right-to-bracket"></i> Submit paper</a>
+    <button class="burger" aria-label="Menu" onclick="document.querySelector('nav.main').scrollIntoView()"><i class="fas fa-bars"></i></button>
   </div>
 </header>
 
-<main>
-  <!-- Hero section -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-left">
-        <div class="hero-sub">INTERNATIONAL WORKSHOP</div>
-        <div class="hero-badge"><i class="fas fa-shield-halved"></i> In conjunction with EUSPN-2026</div>
-        <h1>Cybersecurity and Data Protection in Intelligent Digital Systems</h1>
-        <p class="hero-lead">Satbayev University invites researchers, engineers, security specialists, and industry professionals to participate in CDPIDS-2026, held within the 17th International Conference on Emerging Ubiquitous Systems and Pervasive Networks (EUSPN 2026) in Almaty, Kazakhstan, to explore the synergy between cybersecurity and artificial intelligence in protecting data and ensuring the integrity of intelligent digital systems.</p>
-        <div class="btn-group">
-          <a class="btn btn-primary" href="#submission"><i class="fas fa-file-alt"></i> Submit Paper</a>
-          <a class="btn btn-outline" href="#dates"><i class="fas fa-hourglass-half"></i> Key Dates</a>
-        </div>
+<!-- hero -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">International Workshop · CDPIDS-2026</span>
+      <h1>Cybersecurity &amp; data protection in <span class="hl">intelligent digital systems</span></h1>
+      <p class="lead">A focused forum on the synergy between cybersecurity and artificial intelligence — how intelligent systems detect, prevent, and respond to threats while protecting data and preserving the integrity of modern digital infrastructure.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#submission"><i class="fas fa-file-arrow-up"></i> Submit a paper</a>
+        <a class="btn btn-ghost" href="#dates"><i class="far fa-calendar"></i> Key dates</a>
+      </div>
+      <div class="meta-row">
+        <span><i class="fas fa-location-dot"></i><b>Almaty</b>, Kazakhstan</span>
+        <span><i class="fas fa-calendar-day"></i><b>Oct 28–30</b>, 2026</span>
+        <span><i class="fas fa-book"></i>Elsevier <b>Procedia CS</b></span>
       </div>
     </div>
-  </section>
+    <div class="hero-card">
+      <div class="ticks"><span class="tl"></span><span class="tr"></span><span class="bl"></span><span class="br"></span></div>
+      <img src="cdpids-hero.png" alt="AI and cybersecurity">
+      <div class="tag"><b>AI × SECURITY</b> · resilient digital systems</div>
+    </div>
+  </div>
+</section>
 
-  <!-- quick info cards -->
-  <div class="stats-row">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item"><i class="fas fa-shield-alt stat-icon"></i><h4>CDPIDS-2026</h4><small>International Workshop</small></div>
-        <div class="stat-item"><i class="fas fa-globe stat-icon"></i><h4>Almaty, Kazakhstan</h4><small>Satbayev University</small></div>
-        <div class="stat-item"><i class="fas fa-calendar-check stat-icon"></i><h4>Oct 28–30, 2026</h4><small>EUSPN Conference</small></div>
-        <div class="stat-item"><i class="fas fa-book-open stat-icon"></i><h4>Elsevier Procedia</h4><small>Scopus indexed</small></div>
+<!-- quick strip -->
+<div class="strip">
+  <div class="wrap">
+    <div class="cell"><div class="k">Workshop</div><div class="v">CDPIDS-2026</div><div class="s">International</div></div>
+    <div class="cell"><div class="k">Host</div><div class="v">Satbayev University</div><div class="s">Almaty, Kazakhstan</div></div>
+    <div class="cell"><div class="k">Dates</div><div class="v">Oct 28–30, 2026</div><div class="s">within EUSPN-2026</div></div>
+    <div class="cell"><div class="k">Proceedings</div><div class="v">Elsevier Procedia</div><div class="s">Scopus indexed</div></div>
+  </div>
+</div>
+
+<!-- overview -->
+<section class="block" id="overview">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Overview</span>
+      <h2>Where cybersecurity meets artificial intelligence</h2>
+      <p>Rapid digitalization, the spread of IoT and cyber-physical systems, and the adoption of AI have introduced new classes of security challenges. CDPIDS-2026 examines how intelligent systems defend data and infrastructure — and how those systems are themselves secured.</p>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="ic"><i class="fas fa-brain"></i></div><h3>AI-driven security</h3><p>Intelligent threat detection, adversarial machine learning, behavioral biometrics, and AI-based attack prevention for resilient ecosystems.</p></div>
+      <div class="card"><div class="ic"><i class="fas fa-database"></i></div><h3>Data protection &amp; privacy</h3><p>Secure storage, processing and transmission, personal-data protection, cryptography, and privacy-preserving techniques.</p></div>
+      <div class="card"><div class="ic"><i class="fas fa-network-wired"></i></div><h3>Resilient systems</h3><p>Security of IoT, cloud, edge and cyber-physical systems, fault tolerance, and protection of safety-critical infrastructure.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- objectives -->
+<section class="block alt" id="objectives">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Objectives</span>
+      <h2>What the workshop sets out to do</h2>
+    </div>
+    <div class="obj">
+      <div class="row"><div class="n">01</div><div><h4>Address emerging threats</h4><p>Examine current challenges and emerging threats across intelligent digital environments.</p></div></div>
+      <div class="row"><div class="n">02</div><div><h4>AI for defense</h4><p>Explore AI-based methods for attack detection and prevention, and secure data lifecycles.</p></div></div>
+      <div class="row"><div class="n">03</div><div><h4>Secure modern infrastructure</h4><p>Discuss security in cloud, IoT and cyber-physical systems, with legal and ethical aspects.</p></div></div>
+      <div class="row"><div class="n">04</div><div><h4>Share practical findings</h4><p>Present case studies and research results that advance the state of digital security.</p></div></div>
+      <div class="row"><div class="n">05</div><div><h4>Foster collaboration</h4><p>Strengthen cooperation among universities, research centers, and industry.</p></div></div>
+      <div class="row"><div class="n">06</div><div><h4>Human-centric security</h4><p>Examine the human dimension — social-engineering defense and organizational resilience.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- topics -->
+<section class="block" id="topics">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Call for papers</span>
+      <h2>Topics of interest</h2>
+      <p>We invite original submissions on the following themes — the list is indicative, not exhaustive.</p>
+    </div>
+    <div class="topics">
+      <div class="topic"><div class="ic"><i class="fas fa-brain"></i></div><div><h4>AI in cybersecurity</h4><p>Machine-learning security, adversarial AI, intrusion detection and prevention.</p></div></div>
+      <div class="topic"><div class="ic"><i class="fas fa-fingerprint"></i></div><div><h4>Authentication &amp; privacy</h4><p>Behavioral biometrics, continuous authentication, personal-data protection.</p></div></div>
+      <div class="topic"><div class="ic"><i class="fas fa-shield-virus"></i></div><div><h4>Detection &amp; response</h4><p>Malware analysis, ransomware protection, threat intelligence and risk management.</p></div></div>
+      <div class="topic"><div class="ic"><i class="fas fa-cloud"></i></div><div><h4>Network, cloud &amp; edge</h4><p>Security of networks, cloud, edge, IoT and cyber-physical systems.</p></div></div>
+      <div class="topic"><div class="ic"><i class="fas fa-lock"></i></div><div><h4>Cryptography</h4><p>Cryptography and secure communications for intelligent systems.</p></div></div>
+      <div class="topic"><div class="ic"><i class="fas fa-magnifying-glass"></i></div><div><h4>Forensics &amp; DevSecOps</h4><p>Digital forensics, cybercrime investigation, secure development.</p></div></div>
+      <div class="topic"><div class="ic"><i class="fas fa-scale-balanced"></i></div><div><h4>Ethics &amp; law</h4><p>Ethical and legal aspects of cybersecurity in digital systems.</p></div></div>
+      <div class="topic"><div class="ic"><i class="fas fa-user-secret"></i></div><div><h4>Human factor</h4><p>Human-centric security and social-engineering defense.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- audience -->
+<section class="block alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Audience</span>
+      <h2>Who should attend</h2>
+    </div>
+    <div class="aud">
+      <div class="a"><i class="fas fa-user-graduate"></i><h4>Researchers &amp; educators</h4><p>Cybersecurity academics and PhD candidates.</p></div>
+      <div class="a"><i class="fas fa-user-shield"></i><h4>Security specialists</h4><p>SOC analysts, IT and security engineers.</p></div>
+      <div class="a"><i class="fas fa-laptop-code"></i><h4>Developers</h4><p>Builders of secure software and cloud platforms.</p></div>
+      <div class="a"><i class="fas fa-landmark"></i><h4>Government &amp; industry</h4><p>Digital-security leads and AI/big-data experts.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- dates -->
+<section class="block" id="dates">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Timeline</span>
+      <h2>Important deadlines</h2>
+    </div>
+    <div class="dates-wrap">
+      <table class="dt">
+        <thead><tr><th>Event</th><th>Date</th></tr></thead>
+        <tbody>
+          <tr><td class="ev">Paper submission deadline <span class="mono" style="color:var(--amber)">(extended)</span></td><td class="da amber">June 30, 2026</td></tr>
+          <tr><td class="ev">Notification of acceptance</td><td class="da">August 21, 2026</td></tr>
+          <tr><td class="ev">Camera-ready submission</td><td class="da">September 18, 2026</td></tr>
+          <tr><td class="ev">CDPIDS-2026 workshop</td><td class="da">October 28–30, 2026</td></tr>
+        </tbody>
+      </table>
+      <div class="eu-card">
+        <div class="ic"><i class="fas fa-calendar-week"></i></div>
+        <h3>EUSPN-2026</h3>
+        <p>17th International Conference on Emerging Ubiquitous Systems and Pervasive Networks. CDPIDS is a co-located workshop in Almaty.</p>
+        <a href="https://cs-conferences.acadiau.ca/euspn-26/" target="_blank" rel="noopener">cs-conferences.acadiau.ca/euspn-26</a>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- Overview Section -->
-  <section id="overview">
-    <div class="container">
-      <h2 class="section-title">Where cybersecurity meets artificial intelligence</h2>
-      <p class="section-sub">The rapid digitalization of society, the proliferation of IoT and cyber‑physical systems, and the growing adoption of artificial intelligence have introduced new security challenges. CDPIDS-2026 focuses on how intelligent systems can detect, prevent, and respond to cyber threats while protecting data and ensuring system integrity.</p>
-      <div class="grid-3">
-        <div class="card"><i class="fas fa-brain card-icon"></i><h3>AI‑Driven Security</h3><p>Intelligent threat detection, adversarial machine learning, behavioral biometrics, and AI‑based attack prevention for resilient digital ecosystems.</p></div>
-        <div class="card"><i class="fas fa-database card-icon"></i><h3>Data Protection & Privacy</h3><p>Secure storage, processing and transmission of data, personal data protection, cryptography, and privacy‑preserving technologies.</p></div>
-        <div class="card"><i class="fas fa-network-wired card-icon"></i><h3>Resilient Systems</h3><p>Security of IoT, cloud, edge and cyber‑physical systems, fault tolerance, and protection of safety‑critical digital infrastructures.</p></div>
-      </div>
+<!-- submission -->
+<section class="block alt" id="submission">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Submission &amp; publication</span>
+      <h2>Submit your work</h2>
     </div>
-  </section>
-
-  <!-- Objectives section -->
-  <section class="section-alt" id="objectives">
-    <div class="container">
-      <h2 class="section-title">Workshop objectives</h2>
-      <div class="grid-3">
-        <div class="card"><i class="fas fa-triangle-exclamation"></i><h3>Address emerging threats</h3><p>Examine current challenges and emerging threats in cybersecurity and the protection of intelligent digital environments.</p></div>
-        <div class="card"><i class="fas fa-robot"></i><h3>AI for defense</h3><p>Explore AI‑based methods for attack detection and prevention, and study technologies for secure data storage, processing and transmission.</p></div>
-        <div class="card"><i class="fas fa-cloud"></i><h3>Secure modern infrastructures</h3><p>Discuss security issues in cloud computing, IoT and cyber‑physical systems, alongside legal, ethical, and organizational aspects.</p></div>
-        <div class="card"><i class="fas fa-flask"></i><h3>Share practical findings</h3><p>Present practical case studies and research findings in digital security to advance the state of the art.</p></div>
-        <div class="card"><i class="fas fa-handshake"></i><h3>Foster collaboration</h3><p>Strengthen cooperation among universities, research centers, and industry across the cybersecurity community.</p></div>
-        <div class="card"><i class="fas fa-user-shield"></i><h3>Human‑centric security</h3><p>Examine the human dimension of cybersecurity, including social engineering defense and organizational resilience.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Key topics -->
-  <section id="topics">
-    <div class="container">
-      <h2 class="section-title">Call for Papers — topics of interest</h2>
-      <p class="section-sub">We invite submissions on, but not limited to, the following topics.</p>
-      <div class="topics-grid">
-        <div class="topic-item"><i class="fas fa-brain" style="font-size: 28px; color: var(--cosmic-teal); margin-bottom: 12px; display: inline-block;"></i><h3>AI in Cybersecurity</h3><p>Artificial intelligence in cybersecurity, machine learning security, and adversarial AI.</p></div>
-        <div class="topic-item"><i class="fas fa-shield-virus" style="font-size: 28px; color: var(--cosmic-teal); margin-bottom: 12px;"></i><h3>Detection & Response</h3><p>Intrusion detection and prevention systems, malware analysis, and ransomware protection.</p></div>
-        <div class="topic-item"><i class="fas fa-fingerprint" style="font-size: 28px; color: var(--cosmic-teal); margin-bottom: 12px;"></i><h3>Authentication & Privacy</h3><p>Behavioral biometrics, continuous authentication, personal data protection and privacy.</p></div>
-        <div class="topic-item"><i class="fas fa-cloud" style="font-size: 28px; color: var(--cosmic-teal); margin-bottom: 12px;"></i><h3>Network, Cloud & Edge</h3><p>Network, cloud and edge security; security of IoT and cyber‑physical systems.</p></div>
-        <div class="topic-item"><i class="fas fa-lock" style="font-size: 28px; color: var(--cosmic-teal); margin-bottom: 12px;"></i><h3>Cryptography</h3><p>Cryptography, secure communications, threat intelligence and cyber risk management.</p></div>
-        <div class="topic-item"><i class="fas fa-magnifying-glass" style="font-size: 28px; color: var(--cosmic-teal); margin-bottom: 12px;"></i><h3>Forensics & DevSecOps</h3><p>Digital forensics and cybercrime investigation, secure software development and DevSecOps.</p></div>
-        <div class="topic-item"><i class="fas fa-scale-balanced" style="font-size: 28px; color: var(--cosmic-teal); margin-bottom: 12px;"></i><h3>Ethics & Law</h3><p>Ethical and legal aspects of cybersecurity in intelligent digital systems.</p></div>
-        <div class="topic-item"><i class="fas fa-user-secret" style="font-size: 28px; color: var(--cosmic-teal); margin-bottom: 12px;"></i><h3>Human Factor</h3><p>Human‑centric cybersecurity and social engineering defense.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Audience -->
-  <section class="section-alt">
-    <div class="container">
-      <h2 class="section-title">Who should attend?</h2>
-      <div class="grid-4">
-        <div class="card"><i class="fas fa-user-graduate"></i><h3>Researchers & Educators</h3><p>Cybersecurity and information security academics and PhD candidates.</p></div>
-        <div class="card"><i class="fas fa-user-shield"></i><h3>Security Specialists</h3><p>Information security specialists, SOC analysts, and IT engineers.</p></div>
-        <div class="card"><i class="fas fa-laptop-code"></i><h3>Developers</h3><p>Developers of secure software systems and cloud platforms.</p></div>
-        <div class="card"><i class="fas fa-landmark"></i><h3>Government & Industry</h3><p>Representatives responsible for digital security and AI/big‑data experts.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Important dates -->
-  <section id="dates">
-    <div class="container dates-wrap">
-      <div>
-        <h2 class="section-title">Important deadlines</h2>
-        <img src="Dates.png" alt="CDPIDS-2026 Important Dates" style="width:100%; height:auto; border-radius:20px; box-shadow: var(--shadow-md); border: var(--border-light);">
-      </div>
-      <div class="info-card">
-        <i class="fas fa-calendar-week" style="font-size: 38px; margin-bottom: 12px; display: inline-block;"></i>
-        <h3>EUSPN-2026</h3>
-        <p>17th International Conference on Emerging Ubiquitous Systems and Pervasive Networks. CDPIDS is a co‑located workshop in Almaty, Kazakhstan.</p>
-        <p style="margin-top: 12px;"><i class="fas fa-map-pin"></i> Full program: https://cs-conferences.acadiau.ca/euspn-26/paper-submission.html/</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Submission & Publication + download template -->
-  <section id="submission" class="section-alt">
-    <div class="container">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;" class="responsive-sub">
-        <div>
-          <h2 class="section-title">Paper submission & publication</h2>
-          <p style="margin-bottom: 24px;">All accepted papers will be published in <strong>Elsevier Procedia Computer Science</strong> (open access, Scopus indexed). At least one author must register and present the paper at the workshop.</p>
-          <a class="btn btn-primary" href="https://easychair.org/conferences/?conf=cdpids2026" target="_blank"><i class="fas fa-external-link-alt"></i> Submit via EasyChair</a>
-          <div style="margin-top: 32px; background: white; border-radius: 24px; padding: 24px;">
-            <i class="fas fa-download"></i> <strong>Author guidelines & template</strong><br>
-            <small>Use the official Elsevier Procedia template for your manuscript. Download the template (DOCX) below.</small>
-            <div style="margin-top: 16px;">
-              <a href="CDPIDS26_PROCS_Template.docx" download class="btn btn-download" style="background-color: #1C6E8F; color: white; padding: 10px 20px; border-radius: 40px; text-decoration: none; display: inline-flex; align-items: center; gap: 10px;"><i class="fas fa-file-word"></i> Download CDPIDS-2026 Template (.docx)</a>
-            </div>
-            <p style="margin-top: 16px; font-size: 0.8rem;">Papers must be 6–8 pages, strictly follow the formatting guidelines, and be submitted via EasyChair.</p>
-          </div>
-        </div>
-        <div class="invitation-card">
-          <i class="fas fa-envelope-open-text" style="font-size: 38px; color: var(--cosmic-teal);"></i>
-          <h3 style="margin: 16px 0 8px;">📩 Official Invitation</h3>
-          <p><strong>Dear colleague,</strong><br>On behalf of the CDPIDS-2026 organizing committee, we cordially invite you to submit your recent research on cybersecurity, data protection, AI‑driven defense, and the security of intelligent digital systems. The workshop provides a unique interdisciplinary forum bridging cybersecurity and artificial intelligence. All accepted papers will be indexed by Scopus. We look forward to your contribution!</p>
-          <p style="margin-top: 12px;"><i class="fas fa-calendar-alt"></i> <strong>Extended deadline: June 30, 2026</strong><br>For inquiries, contact the chief organizer.</p>
+    <div class="sub-grid">
+      <div class="panel">
+        <h3>Publication</h3>
+        <p>All accepted and presented papers will be published in <b>Elsevier Procedia Computer Science</b> (open access, Scopus indexed). At least one author must register and present.</p>
+        <a class="btn btn-primary" href="https://easychair.org/conferences/?conf=cdpids2026" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i> Submit via EasyChair</a>
+        <div class="dl-box">
+          <div class="label">Author template</div>
+          <p style="margin-bottom:6px">Use the official Elsevier Procedia template (6–8 pages).</p>
+          <a class="dl-btn" href="CDPIDS26_PROCS_Template.docx" download><i class="fas fa-file-word"></i> Download template (.docx)</a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- TPC Committee -->
-  <section id="committee">
-    <div class="container">
-      <h2 class="section-title">Technical Program Committee (tentative)</h2>
-      <div class="committee-description">
-        <i class="fas fa-globe-asia"></i>
-        The committee brings together international experts in cybersecurity, data protection, artificial intelligence, intrusion detection, secure systems, and digital forensics — reflecting the core interdisciplinary scope of CDPIDS-2026.
-      </div>
-      <div class="committee-list">
-        <div class="member-badge"><span class="member-name">Bagdat Yagaliyeva</span><span class="member-affiliation">Satbayev University, Kazakhstan</span></div>
-        <div class="member-badge"><span class="member-name">Ainur Akhmediyarova</span><span class="member-affiliation">Satbayev University, Kazakhstan</span></div>
-        <div class="member-badge"><span class="member-name">Zhuldyz Alimseitova</span><span class="member-affiliation">Satbayev University, Kazakhstan</span></div>
-        <div class="member-badge"><span class="member-name">Yevgeniya Aitkozhayeva</span><span class="member-affiliation">Satbayev University, Kazakhstan</span></div>
-        <div class="member-badge"><span class="member-name">Sana Habib</span><span class="member-affiliation">Arizona State University, USA</span></div>
-        <div class="member-badge"><span class="member-name">Idris Kabalci</span><span class="member-affiliation">Dokuz Eylul University, Turkey</span></div>
+      <div class="panel invite">
+        <h3>Official invitation</h3>
+        <p class="quote">On behalf of the CDPIDS-2026 organizing committee, we invite you to submit recent research on cybersecurity, data protection, AI-driven defense, and the security of intelligent digital systems. All accepted papers are indexed by Scopus.</p>
+        <div class="ddl"><i class="far fa-clock"></i> Extended deadline · June 30, 2026</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Contact section -->
-  <section id="contact" class="section-alt">
-    <div class="container">
-      <h2 class="section-title">Workshop organizers</h2>
-      <div class="contact-flex">
-        <div class="contact-card"><i class="fas fa-user-circle fa-2x" style="color: var(--cosmic-teal);"></i><h3>Bagdat Yagaliyeva</h3><p>Chief Organizer, Department of Cybersecurity, Satbayev University</p><a href="mailto:b.yagaliyeva@satbayev.university" style="color: var(--signal-amber); font-weight: 600;">b.yagaliyeva@satbayev.university</a></div>
-
-        <div class="contact-card"><i class="fas fa-envelope fa-2x" style="color: var(--cosmic-teal);"></i><h3>General inquiries</h3><p>Department of Cybersecurity<br>Satbayev University, Kazakhstan</p><a href="mailto:b.yagaliyeva@satbayev.university" style="color: var(--signal-amber); font-weight: 600;">b.yagaliyeva@satbayev.university</a></div>
-
-        <div class="contact-card"><i class="fas fa-globe fa-2x" style="color: var(--cosmic-teal);"></i><h3>Workshop website</h3><p>More details via EUSPN-2026 official page.</p><a href="https://auacpn2026.satbayev.university/" target="_blank">auacpn2026.satbayev.university</a></div>
-      </div>
+<!-- committee -->
+<section class="block" id="committee">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Program</span>
+      <h2>Technical Program Committee</h2>
+      <p>An interdisciplinary committee spanning cybersecurity, data protection, AI, intrusion detection, and digital forensics.</p>
     </div>
-  </section>
-</main>
+    <div class="tpc">
+      <div class="m"><div class="nm">Bagdat Yagaliyeva</div><div class="af">Satbayev University, Kazakhstan</div></div>
+      <div class="m"><div class="nm">Ainur Akhmediyarova</div><div class="af">Satbayev University, Kazakhstan</div></div>
+      <div class="m"><div class="nm">Zhuldyz Alimseitova</div><div class="af">Satbayev University, Kazakhstan</div></div>
+      <div class="m"><div class="nm">Yevgeniya Aitkozhayeva</div><div class="af">Satbayev University, Kazakhstan</div></div>
+      <div class="m"><div class="nm">Sana Habib</div><div class="af">Arizona State University, USA</div></div>
+      <div class="m"><div class="nm">Idris Kabalci</div><div class="af">Dokuz Eylul University, Turkey</div></div>
+    </div>
+  </div>
+</section>
 
+<!-- organizers -->
+<section class="block alt" id="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Contact</span>
+      <h2>Workshop organizers</h2>
+    </div>
+    <div class="org">
+      <div class="o"><div class="ic"><i class="fas fa-user-tie"></i></div><h4>Bagdat Yagaliyeva</h4><p>Chief Organizer · Department of Cybersecurity, Satbayev University</p><a href="mailto:b.yagaliyeva@satbayev.university">b.yagaliyeva@satbayev.university</a></div>
+      <div class="o"><div class="ic"><i class="fas fa-envelope"></i></div><h4>General inquiries</h4><p>Department of Cybersecurity, Satbayev University, Kazakhstan</p><a href="mailto:b.yagaliyeva@satbayev.university">b.yagaliyeva@satbayev.university</a></div>
+      <div class="o"><div class="ic"><i class="fas fa-globe"></i></div><h4>Workshop website</h4><p>Full details and updates online.</p><a href="https://auacpn2026.satbayev.university/" target="_blank" rel="noopener">auacpn2026.satbayev.university</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- footer -->
 <footer>
-  <div class="container">
-    <p><strong>CDPIDS-2026</strong> · Cybersecurity and Data Protection in Intelligent Digital Systems<br>Satbayev University, Almaty, Kazakhstan · In conjunction with EUSPN-2026</p>
-    <p style="margin-top: 12px;"><i class="far fa-copyright"></i> 2026 CDPIDS Workshop. All rights reserved.</p>
+  <div class="wrap">
+    <div>
+      <div class="ft-brand">CDPIDS<span>-2026</span></div>
+      <p>Cybersecurity and Data Protection in Intelligent Digital Systems.<br>Satbayev University, Almaty, Kazakhstan · in conjunction with EUSPN-2026.</p>
+    </div>
+    <div class="ft-links">
+      <a href="#overview">Overview</a>
+      <a href="#topics">Topics</a>
+      <a href="#dates">Deadlines</a>
+      <a href="#submission">Submission</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="rule"></div>
+    <div class="copy">© 2026 CDPIDS Workshop · All rights reserved.</div>
   </div>
 </footer>
+
 </body>
 </html>
