@@ -96,6 +96,7 @@ nav.main a:hover::after{width:100%}
 .hero-card{position:relative;border:1px solid var(--line);border-radius:var(--radius);
   overflow:hidden;background:#0a1730;box-shadow:0 24px 60px -28px rgba(10,40,90,.45)}
 .hero-card img{display:block;width:100%;height:100%;object-fit:cover;min-height:360px;opacity:.96}
+.hero-card{aspect-ratio:16/11}
 .hero-card .tag{position:absolute;left:14px;bottom:14px;background:rgba(7,23,48,.82);
   border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(6px);color:#dbe7ff;
   font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.05em;
@@ -230,8 +231,22 @@ footer .copy{grid-column:1/-1;font-family:'JetBrains Mono',monospace;font-size:.
   .strip .wrap{grid-template-columns:repeat(2,1fr)}
   .strip .cell:nth-child(2){border-right:0}
   .cards,.obj,.topics,.aud,.sub-grid,.tpc,.org,.dates-wrap,footer .wrap{grid-template-columns:1fr}
-  nav.main,.head .cta{display:none}
+  .head .cta{display:none}
   .burger{display:inline-flex;align-items:center;justify-content:center}
+  /* turn nav into a dropdown panel toggled by the burger */
+  nav.main{
+    position:absolute;top:78px;left:0;right:0;
+    flex-direction:column;gap:0;
+    background:#fff;border-bottom:1px solid var(--line);
+    box-shadow:0 18px 40px -22px rgba(10,40,90,.4);
+    max-height:0;overflow:hidden;
+    transition:max-height .28s ease;
+  }
+  nav.main.open{max-height:380px}
+  nav.main a{padding:15px 32px;border-top:1px solid var(--line);font-size:.95rem}
+  nav.main a::after{display:none}
+  .hero-card{aspect-ratio:auto}
+  .hero-card img{min-height:0;max-height:300px}
 }
 @media(max-width:560px){
   .wrap{padding:0 20px}
@@ -239,6 +254,8 @@ footer .copy{grid-column:1/-1;font-family:'JetBrains Mono',monospace;font-size:.
   .strip .wrap{grid-template-columns:1fr}
   .strip .cell{border-right:0}
   .aud{grid-template-columns:1fr 1fr}
+  nav.main a{padding:14px 20px}
+  .hero-card img{max-height:230px}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
 </style>
@@ -274,7 +291,7 @@ footer .copy{grid-column:1/-1;font-family:'JetBrains Mono',monospace;font-size:.
       <a href="#committee">Committee</a>
     </nav>
     <a class="cta" href="#submission"><i class="fas fa-arrow-right-to-bracket"></i> Submit paper</a>
-    <button class="burger" aria-label="Menu" onclick="document.querySelector('nav.main').scrollIntoView()"><i class="fas fa-bars"></i></button>
+    <button class="burger" aria-label="Toggle menu" aria-expanded="false" onclick="var n=document.querySelector('nav.main');var o=n.classList.toggle('open');this.setAttribute('aria-expanded',o);this.querySelector('i').className=o?'fas fa-xmark':'fas fa-bars';"><i class="fas fa-bars"></i></button>
   </div>
 </header>
 
@@ -491,5 +508,15 @@ footer .copy{grid-column:1/-1;font-family:'JetBrains Mono',monospace;font-size:.
   </div>
 </footer>
 
+<script>
+document.querySelectorAll('nav.main a').forEach(function(a){
+  a.addEventListener('click',function(){
+    var n=document.querySelector('nav.main');
+    n.classList.remove('open');
+    var b=document.querySelector('.burger');
+    if(b){b.setAttribute('aria-expanded','false');b.querySelector('i').className='fas fa-bars';}
+  });
+});
+</script>
 </body>
 </html>
